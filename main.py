@@ -75,7 +75,8 @@ def confirmation(old_string, new_string):
     confirm = input(f'Are you sure you want to replace "{old_string}" with "{new_string}" ? (y/n): ')
     if confirm.lower() != 'y':
         print(f'{RED}Operation cancelled{END}')
-        exit()
+        return False
+    return True
 
 # Main menu for user interaction
 def menu():
@@ -100,14 +101,16 @@ ______ _       _        _ _
         old_string = input('Enter the text to replace: ')
         new_string = input('Enter the new text: ')
         
-        confirmation(old_string, new_string)
+        if not confirmation(old_string, new_string):
+            return
         replace_in_folder(folder_path, old_string, new_string)
     elif choice == '2':
         file_path = input('Enter the file path: ')
         old_string = input('Enter the text to replace: ')
         new_string = input('Enter the new text: ')
         
-        confirmation(old_string, new_string)
+        if not confirmation(old_string, new_string):
+            return
         replace_in_file(file_path, old_string, new_string)
     elif choice == '3':
         file_path = input('Enter the file path: ')
